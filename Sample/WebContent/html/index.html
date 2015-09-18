@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="store">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+</head>
+<body>
+<script type="text/javascript" src="../js/angular.min.js"></script>
+<script type="text/javascript" src="../js/app.js"></script>
+
+<div ng-controller="StoreController as store">
+<div ng-repeat="product in store.products">
+<div ng-hide="product.soldout">
+<h1>{{product.name}}</h1>
+<h2><em>{{product.price | currency}}</em></h2>
+
+<button ng-show="product.canPurchase">Add to Cart</button>
+</div>
+<br>
+<section ng-controller="PanelController as panel">
+<ul class="nav nav-pills">
+
+<li ng-class="{ active : panel.isSelected(1)}">
+<a href ng-click="panel.selectTab(1)">Description</a>
+</li>
+
+<li ng-class="{ active : panel.isSelected(2)}">
+<a href ng-click="panel.selectTab(2)">Specification</a>
+</li>
+
+<li ng-class="{ active : panel.isSelected(3)}">
+<a href ng-click="panel.selectTab(3)">Review</a>
+</li>
+</ul>
+
+<div class="panel" ng-show="panel.isSelected(1)">
+<h4>Description</h4>
+<p>{{product.description}}</p>
+</div>
+
+<div class="panel" ng-show="panel.isSelected(2)">
+<h4>Specification</h4>
+<blockquote>Not yet</blockquote>
+</div>
+
+<div class="panel" ng-show="panel.isSelected(3)">
+<h4>Review</h4>
+<blockquote>Not yet</blockquote>
+</div>
+
+</section>
+<hr>
+</div>
+</div>
+</body>
+</html>
